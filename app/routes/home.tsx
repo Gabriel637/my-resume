@@ -1,13 +1,26 @@
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
+import Intro from "../Sections/Intro";
+import Experience from "../Sections/Experience";
+import Header from "~/components/Header";
+import SkillsFlow from "~/Sections/Skills";
+import SkillsFlowMobile from "~/Sections/SkillsMobile";
 
 export function meta({}: Route.MetaArgs) {
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: "Gabriel Barbosa" },
+    { name: "description", content: "Resume of Gabriel Barbosa" },
   ];
 }
 
 export default function Home() {
-  return <Welcome />;
+  return <><Header />
+    <Intro />
+    <div className="hidden md:block">
+      <SkillsFlow />
+    </div>
+    <div className="md:hidden">
+      <SkillsFlowMobile />
+    </div>
+    <Experience />
+  </>;
 }
