@@ -1,6 +1,9 @@
-import { animate, motion } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { FaHeart } from 'react-icons/fa';
+import { IoMdAdd, IoMdCheckmark } from 'react-icons/io';
+import { useReward } from 'react-rewards';
 import { useTheme } from '~/contexts/ThemeContext';
 
 type SkillItem = {
@@ -13,6 +16,8 @@ type SkillItem = {
 export default function RadialSkills() {
   const { t } = useTranslation();
   const { theme } = useTheme();
+  const { reward: confettiReward } = useReward('confettiReward', 'confetti', { zIndex: 100, spread: 90, lifetime: 400 });
+
   const [addedSkills, setAddedSkills] = useState<SkillItem[]>([]);
 
   const skillFlow = t('skillFlow', { returnObjects: true }) as SkillItem[];
@@ -27,7 +32,11 @@ export default function RadialSkills() {
   };
 
   const addSkills = () => {
-    if (addedSkills.length < 5) setAddedSkills([...addedSkills, skillFlow[addedSkills.length]])
+    if (addedSkills.length < 4) {
+      setAddedSkills([...addedSkills, skillFlow[addedSkills.length]]);
+    } else {
+      confettiReward();
+    }
   }
 
   return (
@@ -49,22 +58,27 @@ export default function RadialSkills() {
           {t('skillFlowSubtitle')}
         </motion.p>
       </div>
-
       <div className="relative h-[800px] w-full">
         <div
           className="absolute top-1/2 left-1/2 w-32 h-32 -mt-16 -ml-16 
           rounded-full bg-amber-50 shadow-xl border-2 border-amber-100 flex 
           items-center justify-center z-10"
         >
-          <button className='text-5xl absolute -z-10 cursor-pointer'>❤️</button>
+          <motion.button className='text-5xl absolute -z-10 cursor-pointer'
+            whileHover={{ scale: 1.05 }}>
+            <FaHeart className='text-red-400 w-20 h-20' />
+          </motion.button>
           <motion.button drag={addedSkills.length === 5} onClick={addSkills}
-            className={`w-24 h-24 rounded-full bg-amber-900 flex items-center
-           justify-center text-amber-200 text-3xl cursor-pointer
-           ${addedSkills.length < 5 && 'animate-pulse'}
-           `}
+            className={`flex items-center
+           justify-center text-amber-200 text-3xl cursor-pointer`}
             whileHover={{ scale: 1.05 }}
           >
-            {addedSkills.length < 5 ? 'Click Me' : '✨'}
+            {addedSkills.length < 5 ? <IoMdAdd className='bg-amber-900 w-24 h-24 rounded-full' /> :
+              (<>
+                <IoMdCheckmark className='bg-amber-900 w-24 h-24 rounded-full' />
+                <span className='absolute' id="confettiReward" />
+              </>)
+            }
           </motion.button>
         </div>
 
