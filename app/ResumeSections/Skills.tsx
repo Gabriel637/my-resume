@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next';
 import { FaHeart } from 'react-icons/fa';
 import { IoMdAdd, IoMdCheckmark } from 'react-icons/io';
 import { useReward } from 'react-rewards';
+import { Link } from 'react-router';
 import { useTheme } from '~/contexts/ThemeContext';
 
 type SkillItem = {
@@ -32,7 +33,7 @@ export default function RadialSkills() {
   };
 
   const addSkills = () => {
-    if (addedSkills.length < 4) {
+    if (addedSkills.length < 5) {
       setAddedSkills([...addedSkills, skillFlow[addedSkills.length]]);
     } else {
       confettiReward();
@@ -64,10 +65,12 @@ export default function RadialSkills() {
           rounded-full bg-amber-50 shadow-xl border-2 border-amber-100 flex 
           items-center justify-center z-10"
         >
-          <motion.button className='text-5xl absolute -z-10 cursor-pointer'
-            whileHover={{ scale: 1.05 }}>
-            <FaHeart className='text-red-400 w-20 h-20' />
-          </motion.button>
+          <Link to="/love" className='text-5xl absolute -z-10 cursor-pointer'>
+            <motion.button className='cursor-pointer'
+              whileHover={{ scale: 1.05 }}>
+              <FaHeart className='text-red-400 w-20 h-20' />
+            </motion.button>
+          </Link>
           <motion.button drag={addedSkills.length === 5} onClick={addSkills}
             className={`flex items-center
            justify-center text-amber-200 text-3xl cursor-pointer`}

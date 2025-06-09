@@ -1,8 +1,7 @@
 import { motion } from "framer-motion"
-import { useState } from "react"
 import { FaMoon } from "react-icons/fa";
 import { IoMdSunny } from "react-icons/io"
-import { useTheme } from '../../contexts/ThemeContext';
+import { useTheme } from '../contexts/ThemeContext';
 
 const ToggleThemeButton = () => {
   const { theme, toggleTheme } = useTheme();

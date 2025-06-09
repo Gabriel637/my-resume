@@ -1,9 +1,9 @@
 import type { Route } from "./+types/home";
-import Intro from "../Sections/Intro";
-import Experience from "../Sections/Experience";
-import Header from "~/components/Header";
-import SkillsFlow from "~/Sections/Skills";
-import SkillsFlowMobile from "~/Sections/SkillsMobile";
+import Intro from "~/ResumeSections/Intro";
+import Experience from "~/ResumeSections/Experience";
+import Header from "~/ResumeSections/Header";
+import SkillsFlow from "~/ResumeSections/Skills";
+import SkillsFlowMobile from "~/ResumeSections/SkillsMobile";
 
 export function meta({}: Route.MetaArgs) {
   return [
@@ -13,7 +13,8 @@ export function meta({}: Route.MetaArgs) {
 }
 
 export default function Home() {
-  return <><Header />
+  return <>
+    <Header />
     <Intro />
     <div className="hidden md:block">
       <SkillsFlow />

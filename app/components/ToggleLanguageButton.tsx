@@ -1,4 +1,4 @@
-import { useTheme } from '../../contexts/ThemeContext';
+import { useTheme } from '../contexts/ThemeContext';
 import { useI18n, type SupportedLanguage } from "~/contexts/i18nContext";
 
 const ToggleLanguageButton = () => {

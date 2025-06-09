@@ -1,7 +1,7 @@
-import ToggleThemeButtonStyled from "../ToggleThemeButton";
+import ToggleThemeButtonStyled from "../components/ToggleThemeButton";
 import { useEffect, useState } from "react";
 import { useTheme } from "~/contexts/ThemeContext";
-import ToggleLanguageButton from "../ToggleLanguageButton";
+import ToggleLanguageButton from "../components/ToggleLanguageButton";
 
 const Header = () => {
   const { theme } = useTheme();
