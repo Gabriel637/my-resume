@@ -1,0 +1,25 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - run: npm ci
+      - run: npm run build
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${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}
+          publish_dir: ./dist
