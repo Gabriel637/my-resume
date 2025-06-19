@@ -22,5 +22,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           personal_token: ${GH_PAT}
-          publish_dir: ./dist
-          publish_branch: deploy
+          publish_dir: ./build
+          publish_branch: gh-pages
