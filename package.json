@@ -2,7 +2,6 @@
   "name": "my-resume",
   "private": true,
   "type": "module",
-  "homepage": "https://gabriel637.github.io/my-resume",
   "scripts": {
     "build": "vite build",
     "dev": "react-router dev",
